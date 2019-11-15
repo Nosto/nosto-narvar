@@ -1,0 +1,36 @@
+{
+  "extends": "airbnb",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": 0,
+    "func-names": 0,
+    "semi": 0,
+    "import/named": 2,
+    "import/default": 2,
+    "import/namespace": 2,
+    "import/no-anonymous-default-export": ["error", {
+      "allowArray": false,
+      "allowArrowFunction": true,
+      "allowAnonymousClass": false,
+      "allowAnonymousFunction": true,
+      "allowCallExpression": true, // The true value here is for backward compatibility
+      "allowLiteral": false,
+      "allowObject": false
+    }],
+    "import/first": 2,
+    "import/exports-last": 2,
+    "import/no-duplicates": 2,
+    "import/group-exports": 2
+  },
+  "env": {
+    "browser": 1
+  },
+  "globals": {
+    "_targetWindow": true,
+    "Shopify": true,
+    "nostojs": true,
+    "NOSTO_LOG_ORDER": true
+  }
+}
