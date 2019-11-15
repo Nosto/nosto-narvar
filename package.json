@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/Nosto/nosto-narvar.git"
   },
-  "author": "",
-  "license": "SEE LICENSE IN LICENSE file",
+  "author": "Olsi Qose",
+  "license": "See license in LICENSE file",
   "homepage": "https://github.com/Nosto/nosto-narvar#readme",
   "bugs": {
     "url": "https://github.com/Nosto/nosto-narvar/issues"
