@@ -64,5 +64,7 @@ export default function appendNostoCustomerTag() {
       appendNostoCustomerTagging(text)
       nostojs(api => api.loadRecommendations())
     })
+  } else {
+    console.warn('Nosto: Id or domain param is missing. Cannot append nosto customer tagging')
   }
 }

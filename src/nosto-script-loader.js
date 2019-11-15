@@ -9,5 +9,7 @@ export default function appendNostoScript() {
     // Load nosto main script
     const connectNostoUrl = `https://connect.nosto.com/include/${nostoMerchantId}`
     loadScript(connectNostoUrl, 'text/javascript', true)
+  } else {
+    console.warn('Nosto: merchant id is not present. Cannot add the nosto main script')
   }
 }
