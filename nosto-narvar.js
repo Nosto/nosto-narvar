@@ -1,3 +1,5 @@
+import getQueryParams from './helpers.js';
+
 /**
  * Initialise Nosto
  */
@@ -25,19 +27,6 @@ async function digestSHA256(message) {
 }
 
 /**
- * Returns the specified query params from the URL.
- * Note: The URLSearchParams is only available on modern broswers
- * and must be poly-filled for legacy browser compat.
- *
- * @param keys The list URL params to extract
- * @returns {string[]} The list of extracted URL params
- */
-function getQueryParams(...keys) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return keys.map(key => urlParams.get(key))
-}
-
-/**
  * Injects the customer-reference into the DOM. This is a
  * workaround since there is no JS API method exposed by Nosto
  * for this
@@ -60,9 +49,11 @@ function appendNostoCustomerTagging(value) {
  * Parse the parameters, hash it, build the reference and reload recommendations
  */
 const data = getQueryParams('id', 'domain');
-digestSHA256(data.join(''))
-    .then(text => {
-        appendNostoCustomerTagging(text);
-        nostojs(api => api.loadRecommendations()
-        );
-    });
+if (!data.some(el => el === null)) {
+    digestSHA256(data.join(''))
+        .then(text => {
+            appendNostoCustomerTagging(text);
+            nostojs(api => api.loadRecommendations()
+            );
+        });
+}
