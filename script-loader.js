@@ -6,28 +6,12 @@ import {getQueryParams} from './helpers.js';
  * @param url {String} the url of the JS source
  * @param type {String} type of script
  * @param async {boolean}
- * @param callback {function}
  */
-function loadScript(url, type, async, callback){
+function loadScript(url, type, async){
 
     var script = document.createElement("script");
     script.type = type;
     script.setAttribute('async', async);
-
-    if (script.readyState){  //IE
-        script.onreadystatechange = function(){
-            if (script.readyState === "loaded" ||
-                script.readyState === "complete"){
-                script.onreadystatechange = null;
-                callback();
-            }
-        };
-    } else {  //Others
-        script.onload = function(){
-            callback();
-        };
-    }
-
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
 }
@@ -35,9 +19,9 @@ function loadScript(url, type, async, callback){
 const nostoMerchantId = getQueryParams('nosto-merchant-id')[0];
 if (nostoMerchantId !== null) {
     // Load nosto-narvar.js script
-    loadScript("https://cdn.jsdelivr.net/gh/Nosto/nosto-narvar/nosto-narvar.js", "module", false, function(){});
+    loadScript("https://cdn.jsdelivr.net/gh/Nosto/nosto-narvar/nosto-narvar.js", "module", false);
 
     // Load nosto main script
     let connectNostoUrl = `https://connect.nosto.com/include/${nostoMerchantId}`;
-    loadScript(connectNostoUrl, "text/javascript", true, function(){});
+    loadScript(connectNostoUrl, "text/javascript", true);
 }
