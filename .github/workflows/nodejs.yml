@@ -49,7 +49,7 @@ jobs:
           node-version: 13.x
 
       - name: Run dependency audit
-        run: npm audit
+        run: npm audit --production
 
   outdated:
     name: Outdated
