@@ -62,22 +62,9 @@ export default function appendNostoCustomerTag() {
   if (!data.some(el => el === null)) {
     digestSHA256(data.join('')).then((text) => {
       appendNostoCustomerTagging(text)
-      nostojs((api) => {
-        let sent = false
-        api.listen('postrender', () => {
-          if (!sent) {
-            api.listen('customertaggingresent', () => {
-              api.loadRecommendations()
-            })
-            api.resendCustomerTagging()
-            sent = true
-          }
-        })
-        api.createRecommendationRequest().loadRecommendations()
-      })
     })
   } else {
     console.warn('Nosto: Id or domain param is missing.')
-    nostojs(api => api.loadRecommendations())
   }
+  nostojs(api => api.loadRecommendations())
 }
