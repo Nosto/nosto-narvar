@@ -8,9 +8,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-prettier');
 
-    grunt.registerTask('default', ['clean', 'prettier', 'eslint', 'browserify', 'exorcise']);
+    grunt.registerTask('default', ['clean', 'prettier', 'eslint', 'browserify']);
     grunt.registerTask('dev', ['clean', 'prettier', 'eslint', 'browserify', 'watch']);
-    grunt.registerTask('build', ['clean', 'prettier', 'eslint', 'browserify', 'exorcise']);
+    grunt.registerTask('build', ['clean', 'prettier', 'eslint', 'browserify']);
 
     grunt.initConfig({
         prettier: {
@@ -38,14 +38,6 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dist/main.js': ['src/main.js'],
-                }
-            }
-        },
-        exorcise: {
-            bundle: {
-                options: {},
-                files: {
-                    'dist/main.map': ['dist/main.js'],
                 }
             }
         },
